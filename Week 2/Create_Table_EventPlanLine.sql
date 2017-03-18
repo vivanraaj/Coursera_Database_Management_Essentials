@@ -1,0 +1,16 @@
+CREATE TABLE EventPlanLine,
+(PlanNo VARCHAR(8) NOT NULL
+LineNo CHAR(1) NOT NULL,
+TimeStart DATETIME NOT NULL,
+TimeEnd DateTime NOT NULL,
+NumberFLD int NOT NULL,
+ LocNo VARCHAR(8), 
+ ResNo VARCHAR(8), 
+ CONSTRAINT PK_EventPlan PRIMARY KEY (LineNo,PlanNo),
+ CONSTRAINT chk_timestart_end CHECK (TimeStart < TimeEnd),
+ CONSTRAINT FK_PlanNo FOREIGN KEY (PlanNo)
+ REFERENCES EventPlan(PlanNo)
+ CONSTRAINT FK_LocNo FOREIGN KEY (PlanNo)
+ REFERENCES Location(PlanNo)
+ CONSTRAINT FK_ResNo FOREIGN KEY (ResNo)
+ REFERENCES ResourceTBL(ResNo) );
